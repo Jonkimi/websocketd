@@ -24,6 +24,7 @@ type Config struct {
 	ReverseLookup  bool     // Perform reverse DNS lookups on hostnames (useful, but slower).
 	Ssl            bool     // websocketd works with --ssl which means TLS is in use
 	ScriptDir      string   // Base directory for websocket scripts.
+	ScriptDirPrefix string  //  directory prefix for websocket scripts dir
 	UsingScriptDir bool     // Are we running with a script dir.
 	StaticDir      string   // If set, static files will be served from this dir over HTTP.
 	CgiDir         string   // If set, CGI scripts will be served from this dir over HTTP.

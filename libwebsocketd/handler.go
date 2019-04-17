@@ -125,9 +125,17 @@ func GetURLInfo(path string, config *Config) (*URLInfo, error) {
 	urlInfo := &URLInfo{}
 
 	for i, part := range parts {
-		urlInfo.ScriptPath = strings.Join([]string{urlInfo.ScriptPath, part}, "/")
-		urlInfo.FilePath = filepath.Join(config.ScriptDir, urlInfo.ScriptPath)
+		//add dir prefix
 		isLastPart := i == len(parts)-1
+
+		if !isLastPart {
+			urlInfo.ScriptPath = strings.Join([]string{urlInfo.ScriptPath, config.ScriptDirPrefix + part}, "/")
+		} else{
+			urlInfo.ScriptPath = strings.Join([]string{urlInfo.ScriptPath, config.ScriptDirPrefix}, "/")
+		}
+
+		urlInfo.FilePath = filepath.Join(config.ScriptDir, urlInfo.ScriptPath)
+
 		statInfo, err := os.Stat(urlInfo.FilePath)
 
 		// not a valid path

@@ -79,6 +79,9 @@ func parseCommandLine() *Config {
 	binaryFlag := flag.Bool("binary", false, "Set websocketd to experimental binary mode (default is line by line)")
 	reverseLookupFlag := flag.Bool("reverselookup", false, "Perform reverse DNS lookups on remote clients")
 	scriptDirFlag := flag.String("dir", "", "Base directory for WebSocket scripts")
+
+	scriptDirPrefixFlag := flag.String("dir prefix", "", "script directory prefix for WebSocket scripts")
+
 	staticDirFlag := flag.String("staticdir", "", "Serve static content from this directory over HTTP")
 	cgiDirFlag := flag.String("cgidir", "", "Serve CGI scripts from this directory over HTTP")
 	devConsoleFlag := flag.Bool("devconsole", false, "Enable development console (cannot be used in conjunction with --staticdir)")
@@ -139,6 +142,7 @@ func parseCommandLine() *Config {
 	config.ReverseLookup = *reverseLookupFlag
 	config.Ssl = *sslFlag
 	config.ScriptDir = *scriptDirFlag
+	config.ScriptDirPrefix = *scriptDirPrefixFlag
 	config.StaticDir = *staticDirFlag
 	config.CgiDir = *cgiDirFlag
 	config.DevConsole = *devConsoleFlag
